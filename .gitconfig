@@ -1,0 +1,7 @@
+[user]
+	name = TheJuanitoLearnsShow
+	email = jptarqu@hotmail.com
+[gpg]
+    program = gpg
+[commit]
+    gpgsign = true
