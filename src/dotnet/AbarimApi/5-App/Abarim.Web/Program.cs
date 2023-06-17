@@ -1,5 +1,6 @@
 // <configuration>
 using Orleans.Runtime;
+using Abarim.Contracts;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

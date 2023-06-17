@@ -1,4 +1,7 @@
-﻿namespace Abarim.Actors;
+﻿using Abarim.Contracts;
+using Orleans.Runtime;
+
+namespace Abarim.Actors;
 
 public sealed class AccountGrain : Grain, IAccountGrain
 {

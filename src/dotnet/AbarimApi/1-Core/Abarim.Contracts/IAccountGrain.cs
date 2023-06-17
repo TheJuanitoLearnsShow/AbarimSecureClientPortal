@@ -1,4 +1,7 @@
-﻿namespace Abarim.Contracts;
+﻿using Orleans.Runtime;
+
+namespace Abarim.Contracts;
+
 public interface IAccountGrain : IGrainWithStringKey
 {
     Task<AccountDetails> GetAccountDetails();
