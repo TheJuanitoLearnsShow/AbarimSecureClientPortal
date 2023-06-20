@@ -20,8 +20,10 @@ app.MapGet("/", () => "Hello World!");
 
 
 app.MapGet("/account/name",
-    async (IGrainFactory grains, string accountKey) =>
-    {  
+    async (IHubContext<BackendCoreHub>, string accountKey) =>
+    {
+        // TODO or maybe instead of injecting the hub, we still inject the grain factory
+        //  and ask Orleans to send the message round robin?
         var accountGrain = grains.GetGrain<IAccountGrain>();
         var url = await accountGrain.GetAccountDetails();
 

@@ -3,20 +3,18 @@ using Orleans.Runtime;
 
 namespace Abarim.Actors;
 
-public sealed class AccountGrain : Grain, IAccountGrain
+public sealed class BackendCoreGrain : Grain, IBackendCoreGrain
 {
-    private readonly IPersistentState<AccountDetailsStorage> _state;
+    private Func<string, Task<string>> _communicator;
 
-    public AccountGrain(
-        [PersistentState(
-            stateName: "accounts",
-            storageName: "accounts")]
-        IPersistentState<AccountDetailsStorage> state) => _state = state;
-
-    public async Task<AccountDetails> GetAccountDetails()
+    public Task SetClient(Func<string, Task<string>> communicator)
     {
-        // call the Hub actor?
-        return new AccountDetails("John");
+        _communicator = communicator;
+        return Task.CompletedTask;
     }
 
+    public Task<string> GetReplyFromBackend(string msgPayload)
+    {
+        _communicator.GetReplyFromBackend(msgPayload);
+    }
 }
